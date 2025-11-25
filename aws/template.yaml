@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Serverless resources for Task Automation (scaffold)
+Resources:
+  TaskSchedulerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: TaskScheduler
+      Handler: lambdas.scheduler.lambda_handler
+      Runtime: python3.11
+      Timeout: 60
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:Query
+                - dynamodb:Scan
+                - dynamodb:GetItem
+                - dynamodb:UpdateItem
+                - s3:PutObject
+              Resource: '*'
+      Events:
+        SchedulerEvent:
+          Type: Schedule
+          Properties:
+            Schedule: rate(1 minute)
+  TaskNotifierFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: TaskNotifier
+      Handler: lambdas.notifier.lambda_handler
+      Runtime: python3.11
+      Timeout: 30
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Environment:
+        Variables:
+          NOTIFICATION_TOPIC_ARN: '' 
