@@ -54,6 +54,10 @@ sam deploy --guided
 ```
 3. Configure environment variables and IAM roles as described in the template.
 
+
+   <img width="1293" height="871" alt="image" src="https://github.com/user-attachments/assets/0b0b7f07-e3e2-4708-ab64-d312451b6f6f" />
+
+
 ## Notes
 - This scaffold focuses on structure and key integration points. For production you must:
   - Add authentication (Cognito / API Gateway JWT)
