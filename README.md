@@ -60,5 +60,3 @@ sam deploy --guided
   - Harden Lambda IAM roles (least privilege)
   - Add robust retry and dead-letter handling for async tasks
   - Replace local SQLite with DynamoDB / RDS as appropriate
-
-Enjoy! — Generated scaffold
